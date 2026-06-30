@@ -57,7 +57,7 @@ def definir_sabados_letivos(dias_da_semana, ano_selecionado):
 # Interface Streamlit
 st.title("Verificador de Aulas Faltantes - Cajui")
 
-ano_selecionado = st.number_input("Ano", min_value=1900, max_value=2100, value=2025, step=1)
+ano_selecionado = st.number_input("Ano", min_value=1900, max_value=2100, value=2026, step=1)
 uploaded_file = st.file_uploader("Escolha um arquivo CSV", type="csv")
 
 if uploaded_file is not None:
