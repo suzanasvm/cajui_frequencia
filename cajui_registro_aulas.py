@@ -41,7 +41,7 @@ def definir_feriados(inicio_semestre):
 
 # Função para definir sábados letivos de 2025 conforme calendário IFNMG
 def definir_sabados_letivos(dias_da_semana, ano_selecionado):
-dict_sabados = {
+    dict_sabados = {
         'Monday': [],
         'Tuesday': ['2026-03-14'],
         'Wednesday': [],
