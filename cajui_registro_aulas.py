@@ -17,15 +17,16 @@ dias_semana_dict = {
 # Função para definir recessos fixos do calendário 2025 IFNMG - Campus Almenara
 def listar_recessos_2025():
     datas = [
-        ("2025-04-17", "2025-04-17"),
-        ("2025-05-02", "2025-05-02"),
-        ("2025-06-19", "2025-06-19"),
-        ("2025-06-20", "2025-06-20"),
-        ("2025-06-23", "2025-06-23"),
-        ("2025-10-27", "2025-10-27"),
-        ("2025-11-21", "2025-11-21"),
-        ("2025-12-24", "2025-12-24"),
-        ("2025-12-31", "2025-12-31"),
+        ("2026-01-02", "2026-01-02"),  # Ponto Facultativo
+        ("2026-02-16", "2026-02-16"),  # Carnaval - ponto facultativo
+        ("2026-02-17", "2026-02-17"),  # Carnaval - ponto facultativo
+        ("2026-02-18", "2026-02-18"),  # Quarta-feira de Cinzas - ponto facultativo até as 14h
+        ("2026-04-20", "2026-04-20"),  # Ponto Facultativo
+        ("2026-05-27", "2026-05-27"),  # Acidente
+        ("2026-05-28", "2026-05-28"),  # Acidente
+        ("2026-05-29", "2026-05-29"),  # Acidente
+        ("2026-06-04", "2026-06-04"),  # Ponto Facultativo - Corpus Christi
+        ("2026-06-05", "2026-06-05"),  # Ponto Facultativo
     ]
     frames = [pd.date_range(start=start, end=end, freq='D') for start, end in datas]
     datas_recesso = pd.to_datetime(pd.concat([pd.Series(f) for f in frames])).dt.date
@@ -40,12 +41,12 @@ def definir_feriados(inicio_semestre):
 
 # Função para definir sábados letivos de 2025 conforme calendário IFNMG
 def definir_sabados_letivos(dias_da_semana, ano_selecionado):
-    dict_sabados = {
-        'Monday': ['2025-06-14', '2025-08-23'],
-        'Tuesday': ['2025-09-27'],
-        'Wednesday': ['2025-10-25'],
-        'Thursday': ['2025-04-26'],
-        'Friday': []
+dict_sabados = {
+        'Monday': [],
+        'Tuesday': ['2026-03-14'],
+        'Wednesday': [],
+        'Thursday': [],
+        'Friday': ['2026-04-11']
     }
     datas_sabados = []
     for dia in dias_da_semana:
@@ -61,8 +62,8 @@ uploaded_file = st.file_uploader("Escolha um arquivo CSV", type="csv")
 
 if uploaded_file is not None:
     DIAS_DE_AULA = st.multiselect("Dias de Aula", list(dias_semana_dict.keys()))
-    inicio_semestre = st.date_input("Início do Semestre", value=pd.to_datetime('2025-02-05'))
-    fim_semestre = st.date_input("Fim do Semestre", value=pd.to_datetime('2025-07-08'))
+    inicio_semestre = st.date_input("Início do Semestre", value=pd.to_datetime('2026-02-04'))
+    fim_semestre = st.date_input("Fim do Semestre", value=pd.to_datetime('2026-07-03'))
 
     aulas_registradas = pd.read_csv(uploaded_file, parse_dates=['Data de início'], dayfirst=True)
     aulas_registradas['Data de início'] = pd.to_datetime(aulas_registradas['Data de início']).dt.date
